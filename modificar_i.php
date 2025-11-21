@@ -5,29 +5,17 @@ if (!isset($_SESSION['usuario_id'])) {
     exit();
 }
 
-<<<<<<< HEAD
-// Asegurarse de que el método sea GET
-if ($_SERVER["REQUEST_METHOD"] !== "GET") {
-=======
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
->>>>>>> abd3fcbfb9c7915689a61aa268e232dc15868d40
     header("Location: ingreso.php");
     exit();
 }
 
-<<<<<<< HEAD
-// Obtener los datos de la URL (con GET)
-$codigo = $_GET["codigo"] ?? '';
-$nueva_cantidad = $_GET["cantidad_modificada"] ?? '';
-$justificacion = trim($_GET["justificacion"] ?? '');
-
-// Validar la nueva cantidad
-=======
+// Obtener los datos de la solicitud POST
 $codigo = $_POST["codigo"] ?? '';
 $nueva_cantidad = $_POST["cantidad_modificada"] ?? '';
 $justificacion = trim($_POST["justificacion"] ?? '');
 
->>>>>>> abd3fcbfb9c7915689a61aa268e232dc15868d40
+// Validar la nueva cantidad
 if (!is_numeric($nueva_cantidad) || (int)$nueva_cantidad <= 0 || (int)$nueva_cantidad > 10000) {
     $_SESSION['error'] = "Cantidad inválida";
     header("Location: ingreso.php");
@@ -37,7 +25,7 @@ if (!is_numeric($nueva_cantidad) || (int)$nueva_cantidad <= 0 || (int)$nueva_can
 // Conexión a la base de datos
 include 'config.php';
 
-// Verificar si el producto existe
+// Verificar si el producto existe en la base de datos
 $sql_producto = "SELECT id_producto FROM productos WHERE codigo = ? LIMIT 1";
 $stmt = $conn->prepare($sql_producto);
 $stmt->bind_param("s", $codigo);

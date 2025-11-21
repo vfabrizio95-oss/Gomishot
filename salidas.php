@@ -41,17 +41,10 @@ function obtenerStock($codigo, $conn) {
 }
 
 // Registrar salida
-<<<<<<< HEAD
-if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["registrar"])) {
-    $codigo = trim($_GET['codigo'] ?? '');
-    $cantidad = $_GET['cantidad'] ?? '';
-    $fecha = trim($_GET['fecha'] ?? '');
-=======
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["registrar"])) {
     $codigo = trim($_POST['codigo'] ?? '');
     $cantidad = $_POST['cantidad'] ?? '';
     $fecha = trim($_POST['fecha'] ?? '');
->>>>>>> abd3fcbfb9c7915689a61aa268e232dc15868d40
 
     // Verificar si el producto existe
     $sql_producto = "SELECT id_producto FROM productos WHERE codigo = '$codigo' LIMIT 1";
@@ -84,14 +77,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["registrar"])) {
     $id_producto = $row_producto['id_producto'];
 
     // Insertar la salida en la base de datos
-<<<<<<< HEAD
     $sql_salida = "INSERT INTO salidas (id_producto, id_usuario, cantidad, fecha) 
                    VALUES ('$id_producto', '{$_SESSION['usuario_id']}', '$cantidad', '$fecha')";
-=======
-$sql_salida = "INSERT INTO salidas (id_producto, id_usuario, cantidad, fecha) 
-               VALUES ('$id_producto', '{$_SESSION['usuario_id']}', '$cantidad', '$fecha')";
-
->>>>>>> abd3fcbfb9c7915689a61aa268e232dc15868d40
 
     if ($conn->query($sql_salida) === TRUE) {
         $_SESSION['mensaje'] = "Salida registrada con éxito. Stock restante: " . ($stock_actual - $cantidad);
@@ -165,11 +152,7 @@ while ($row = $result->fetch_assoc()) {
     <div class="panel">
         <div class="formulario">
             <h2>Registrar Salida</h2>
-<<<<<<< HEAD
-            <form method="GET" action="salidas.php">
-=======
-            <form method="POST">
->>>>>>> abd3fcbfb9c7915689a61aa268e232dc15868d40
+            <form method="POST" action="salidas.php">
                 <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
                 
                 <select name="codigo" id="selectProducto" required>

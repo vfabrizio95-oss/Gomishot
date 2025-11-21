@@ -1,9 +1,12 @@
 <?php
-/**
- * GOMISHOT 2.0 - Cerrar Sesión
- */
-
+// Iniciar sesión
 session_start();
+
+// Verificar si el usuario está autenticado, si no lo está, redirigir al login
+if (!isset($_SESSION['usuario'])) {
+    header("Location: ingresar.html");
+    exit();
+}
 
 // Registrar logout
 $usuario = $_SESSION['usuario'] ?? 'Desconocido'; // Si no hay usuario en sesión, usar 'Desconocido'
