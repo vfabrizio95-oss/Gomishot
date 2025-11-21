@@ -5,18 +5,29 @@ if (!isset($_SESSION['usuario_id'])) {
     exit();
 }
 
+<<<<<<< HEAD
 // Asegurarse de que el método sea GET
 if ($_SERVER["REQUEST_METHOD"] !== "GET") {
+=======
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+>>>>>>> abd3fcbfb9c7915689a61aa268e232dc15868d40
     header("Location: ingreso.php");
     exit();
 }
 
+<<<<<<< HEAD
 // Obtener los datos de la URL (con GET)
 $codigo = $_GET["codigo"] ?? '';
 $nueva_cantidad = $_GET["cantidad_modificada"] ?? '';
 $justificacion = trim($_GET["justificacion"] ?? '');
 
 // Validar la nueva cantidad
+=======
+$codigo = $_POST["codigo"] ?? '';
+$nueva_cantidad = $_POST["cantidad_modificada"] ?? '';
+$justificacion = trim($_POST["justificacion"] ?? '');
+
+>>>>>>> abd3fcbfb9c7915689a61aa268e232dc15868d40
 if (!is_numeric($nueva_cantidad) || (int)$nueva_cantidad <= 0 || (int)$nueva_cantidad > 10000) {
     $_SESSION['error'] = "Cantidad inválida";
     header("Location: ingreso.php");

@@ -1,13 +1,20 @@
 <?php
 session_start();
+<<<<<<< HEAD
 if (!isset($_SESSION['usuario_id'])) {
+=======
+if (!isset($_SESSION['usuario'])) {
+>>>>>>> abd3fcbfb9c7915689a61aa268e232dc15868d40
     header("Location: ingresar.html");
     exit();
 }
 
+<<<<<<< HEAD
 // Incluir la conexión a la base de datos
 include 'config.php';
 
+=======
+>>>>>>> abd3fcbfb9c7915689a61aa268e232dc15868d40
 $ingresos_file = __DIR__ . '/data/ingresos.csv';
 $salidas_file = __DIR__ . '/data/salidas.csv';
 
@@ -58,7 +65,11 @@ if (file_exists($salidas_file)) {
     fclose($fp);
 }
 
+<<<<<<< HEAD
 // Generar alertas de stock bajo
+=======
+// Generar alertas
+>>>>>>> abd3fcbfb9c7915689a61aa268e232dc15868d40
 $alertas = [];
 foreach ($stock as $nombre => $datos) {
     if ($datos['disponible'] <= 5 && $datos['disponible'] > 0) {
@@ -105,7 +116,10 @@ $total_disponible = array_sum(array_column($stock, 'disponible'));
     <main class="tabla-stock">
         <h2 style="color:#ffa500; text-align:center;">📦 Stock de Almacén</h2>
         
+<<<<<<< HEAD
         <!-- Mostrar alertas de stock bajo -->
+=======
+>>>>>>> abd3fcbfb9c7915689a61aa268e232dc15868d40
         <?php if (!empty($alertas)): ?>
             <div class="alertas">
                 <strong>⚠️ Alertas:</strong>
@@ -115,7 +129,10 @@ $total_disponible = array_sum(array_column($stock, 'disponible'));
             </div>
         <?php endif; ?>
         
+<<<<<<< HEAD
         <!-- Resumen general de ingresos, salidas y stock disponible -->
+=======
+>>>>>>> abd3fcbfb9c7915689a61aa268e232dc15868d40
         <div class="resumen">
             <div class="resumen-card">
                 <h3>Total Ingresos</h3>
@@ -131,7 +148,10 @@ $total_disponible = array_sum(array_column($stock, 'disponible'));
             </div>
         </div>
         
+<<<<<<< HEAD
         <!-- Verificar si hay productos en stock -->
+=======
+>>>>>>> abd3fcbfb9c7915689a61aa268e232dc15868d40
         <?php if (empty($stock)): ?>
             <div style="text-align:center; padding:40px; color:#999;">
                 <p>📭 No hay productos en el almacén</p>

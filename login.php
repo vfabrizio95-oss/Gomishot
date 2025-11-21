@@ -6,9 +6,15 @@
 
 session_start();
 
+<<<<<<< HEAD
 // Obtener datos (ahora usando $_GET en lugar de $_POST)
 $usuario = isset($_GET['usuario']) ? trim($_GET['usuario']) : '';
 $contrasena = isset($_GET['contrasena']) ? trim($_GET['contrasena']) : '';
+=======
+// Obtener datos
+$usuario = isset($_POST['usuario']) ? trim($_POST['usuario']) : '';
+$contrasena = isset($_POST['contrasena']) ? trim($_POST['contrasena']) : '';
+>>>>>>> abd3fcbfb9c7915689a61aa268e232dc15868d40
 
 // Validar vacíos
 if (empty($usuario) || empty($contrasena)) {
@@ -34,6 +40,10 @@ if ($contrasena === $usuarios_validos[$usuario]) {
     session_regenerate_id(true);
 
     // Obtener el ID del usuario desde la base de datos (simulado para este caso)
+<<<<<<< HEAD
+=======
+    // Si estás usando una base de datos, deberías obtener el `usuario_id` de la siguiente manera:
+>>>>>>> abd3fcbfb9c7915689a61aa268e232dc15868d40
     include 'config.php'; // Conexión a la base de datos
 
     $sql = "SELECT id_usuario FROM usuarios WHERE username = ?";

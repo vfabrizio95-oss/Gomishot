@@ -23,11 +23,19 @@ while ($row = $result->fetch_assoc()) {
 }
 
 // Procesar el formulario cuando se envía
+<<<<<<< HEAD
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $codigo = $_GET['codigo'];  // El código del producto
     $nombre = $_GET['nombre'];  // Nombre del producto
     $cantidad = $_GET['cantidad'];  // Cantidad de productos ingresados
     $fecha = $_GET['fecha'];  // Fecha de ingreso
+=======
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $codigo = $_POST['codigo'];  // El código del producto
+    $nombre = $_POST['nombre'];  // Nombre del producto
+    $cantidad = $_POST['cantidad'];  // Cantidad de productos ingresados
+    $fecha = $_POST['fecha'];  // Fecha de ingreso
+>>>>>>> abd3fcbfb9c7915689a61aa268e232dc15868d40
 
     // Validar que el producto exista en la base de datos
     $sql_producto = "SELECT id_producto FROM productos WHERE codigo = '$codigo' AND nombre = '$nombre' LIMIT 1";
@@ -89,10 +97,20 @@ $sql_ingreso = "INSERT INTO ingresos (id_producto, id_usuario, cantidad, fecha)
     <div class="panel">
         <div class="formulario">
             <h2>Registrar Producto</h2>
+<<<<<<< HEAD
             <form method="GET" action="ingreso.php" id="formIngreso">
                 <input type="text" name="codigo" placeholder="Código (ej: JAG001)" 
                     pattern="[A-Z0-9]{3,10}" title="3-10 caracteres: A-Z y 0-9" 
                     maxlength="10" required>
+=======
+            <form method="POST" action="ingreso.php" id="formIngreso">
+                <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
+                
+                <input type="text" name="codigo" placeholder="Código (ej: JAG001)" 
+                       pattern="[A-Z0-9]{3,10}" title="3-10 caracteres: A-Z y 0-9" 
+                       maxlength="10" required>
+                
+>>>>>>> abd3fcbfb9c7915689a61aa268e232dc15868d40
                 <select name="nombre" required>
                     <option value="">Seleccione el producto</option>
                     <?php foreach ($productos as $id => $producto): ?>
@@ -101,8 +119,17 @@ $sql_ingreso = "INSERT INTO ingresos (id_producto, id_usuario, cantidad, fecha)
                         </option>
                     <?php endforeach; ?>
                 </select>
+<<<<<<< HEAD
                 <input type="number" name="cantidad" id="cantidadInput" placeholder="Cantidad" min="1" max="10000" step="1" required>
                 <input type="date" name="fecha" max="<?php echo date('Y-m-d'); ?>" required>
+=======
+                
+                <input type="number" name="cantidad" id="cantidadInput"
+                       placeholder="Cantidad (solo positivos)" min="1" max="10000" step="1" required>
+                
+                <input type="date" name="fecha" max="<?php echo date('Y-m-d'); ?>" required>
+                
+>>>>>>> abd3fcbfb9c7915689a61aa268e232dc15868d40
                 <div class="boton-group">
                     <button class="boton" type="submit">Registrar</button>
                     <a href="generar_reporte_ingresos.php" class="boton">Generar Reporte</a>
